@@ -16,7 +16,7 @@ void push(char vet[], int i, char val, int p){
 int pop(char vet[]){
   int ris = 0, o=0;
   char val2;
-  //spostare operando
+  
   for(int y=0; y< lunghezza(vet); y++)
     if((vet[y]=='+') || (vet[y]=='-') || (vet[y]=='*') || (vet[y]=='/')){
       o=y;
