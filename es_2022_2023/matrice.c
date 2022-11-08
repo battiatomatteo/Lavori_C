@@ -31,7 +31,7 @@ void stampa(int matrice [7] [7]){
 void simmetrica(int matrice [7] [7]){
   for(int y=0; y<7; y++){
     for (int x=0; x<7; x++){
-      if((matrice[y] [x]==matrice[x] [y]) && (x!=y)){
+      if((matrice[y] [x] == matrice[x] [y]) && (x != y)){
         printf("\nIl numero in posizione (%d;%d) è uguale al numero in posizione (%d;%d) .", y, x, x, y);
       }
     }
