@@ -1,0 +1,29 @@
+//introduzione al fork and join
+#include <stdio.h>
+#include<stdlib.h>
+#include <sys/wait.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <time.h>
+
+int main(void) {
+  int pid, stato;
+  printf("1) prima della fork \n");
+  
+  pid = fork();  //crea il processo figlio
+  printf("2) dopo della fork \n");
+  
+  if (pid == 0){
+    srand((unsigned)time(NULL));
+    int numero = rand()%50+1;
+    printf("3) %d : sono il processo figlio \n", getpid());
+    printf("Del numero  %d ha generato il numero =%d\n", getpid(), numero);
+    exit(numero);  //termina il processo figlio
+  }
+  else{
+    pid = wait(&stato);
+    printf("3) sono il processo padre %d \n", getpid());
+    printf("mio figlio ha generato il numero : %d", pid,WEXITSTATUS(stato));
+    exit(0);
+  }
+} 

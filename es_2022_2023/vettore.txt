@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int sostituzione(int vettore[], int pot, int ris){
+  for(int x=0; x<10; x++){
+    if(vettore[x] % 2 == 0){
+      vettore[x]= 0;
+    }
+    else{
+      vettore[x]= 1;
+    }
+    ris += pot;
+  }
+  for(int w=0; w<10; w++){
+    printf("%d ", vettore[w]);
+  }
+  printf("\n%d", ris);
+  return vettore;
+}
+
+int main(void) {
+  int vettore[10];
+  int pot=0, ris=0;
+  srand ((unsigned) time (NULL));
+  for(int j=0; j<10; j++){
+    vettore[j]= rand()%10;
+  }
+  sostituzione(vettore, pot, ris);
+  
+  return 0;
+}

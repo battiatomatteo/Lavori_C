@@ -1,0 +1,64 @@
+//((a + b) / (c - d))^2
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/wait.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+int main(void) {
+  int a=1, b=2, c=4, d=2, risA, risC, risT,stato;
+  pid_t pid1, pid2, pid3;
+  
+  pid1= fork();
+  
+  if(pid1>0){
+    //padre
+    pid2 = fork();
+    
+    if(pid2>0){
+      //padre risT^2
+      pid2 = waitpid(pid2, &stato, 0 );
+      risT = WEXITSTATUS(stato);
+      printf("PID = %d, ho ricevo risT = %d da PID = %d \n", getpid(), risT, pid2);
+      
+      int r=risT*risT;
+      printf("\nIl risultato dell'espressione è: %d", r);
+      
+      exit(0);
+    }
+    else{
+      //figlio 2
+      pid3 = fork();
+      
+      if(pid3>0){
+        //figlio 3 risA/risC
+        pid1 = waitpid(pid1, &stato, 0 );
+        risA = WEXITSTATUS(stato);
+        printf("PID = %d, ho ricevo risA = %d da PID = %d \n", getpid(), risA, pid1);
+        //printf("\n%d\n", risA);
+        printf("\n");
+        pid3 = waitpid(pid3, &stato, 0 );
+        risC = WEXITSTATUS(stato);
+        printf("PID = %d, ho ricevo  risC = %d da PID = %d \n", getpid(), risC, pid3);
+        printf("\n");
+        risT = risA / risC;
+        
+        exit(risT);
+      }
+      else{
+        //figlio 2 ---> c-d
+        int risC= c-d;
+        printf("Figlio 2 con PID = %d , ha calcolato risA = c-d = %d\n", getpid(), risC);
+        exit(risC);
+      }
+    }
+  }
+  else{
+    //figlio1 ---> a+b
+    risA= a+b;
+    printf("Figlio 1 con PID = %d , ha calcolato risA = a+b = %d\n", getpid(), risA);
+    exit(risA);
+  }
+  return 0;
+}

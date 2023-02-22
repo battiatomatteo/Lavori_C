@@ -21,7 +21,7 @@ void codifica(char val[]) {
           }  
   }
 }
-
+//da finire
 void decodifica(char val[]) {
   for (int x = 0; x < lunghezza(val); x++) {
     if (val[x] == 'C') {

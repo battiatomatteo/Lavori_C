@@ -1,0 +1,49 @@
+/*
+scrivere un programma dove il processo padre P crea 2 processi figli F1 e F2 in cui ognuno crea un ritardo(sleep) di tipo rand() (max 5 secondi).
+Il processo padre stampa a video il processo figlio che termina per primo.
+*/
+
+#include <stdio.h>
+#include<stdlib.h>
+#include <sys/wait.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <time.h>
+
+int main(void) {
+  int stato, num=0;
+  int pid = fork();
+  if(pid==0){
+    srand((unsigned)time(NULL));
+    int numero = rand()%50+1;
+    printf("1) %d : sono il processo figlio 1\n", getpid());
+    printf("Del numero  %d ha generato il numero =%d\n", getpid(), numero);
+    num = rand()%6;
+    sleep(num);
+    printf("sleep: %d\n", num);
+    exit(numero);
+  }
+  else{
+      int pid2 = fork();
+      if(pid2==0){
+        printf("\n");
+        srand((unsigned)time(NULL));
+        int numero = rand()%50+1;
+        printf("\n2) %d : sono il processo figlio 2 \n", getpid());
+        printf("Del numero  %d ha generato il numero =%d\n", getpid(), numero);
+        num = rand()%6;
+        sleep(num);
+        printf("sleep: %d\n", num);
+        exit(numero);
+      }
+      else{
+        printf("\n");
+        pid = wait(&stato);
+        printf("\n3) sono il processo padre %d \n", getpid());
+        printf("mio figlio ha generato il numero : %d", pid,WEXITSTATUS(stato));
+        exit(0);
+        
+      }
+    }
+  return 0;
+}

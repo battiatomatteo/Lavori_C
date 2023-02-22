@@ -1,0 +1,39 @@
+//(10-4)/3+(11+4)*(15-12)
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/wait.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+int main(int argc, char const *argv[])
+{
+    pid_t pid1, pid2;
+    int stato, a, b,c, ris1, ris2, ris3, rist;
+    pid1=fork();
+    if(pid1>0){
+        //!padre figlio 1
+        pid2=fork();
+        if(pid2>0){
+            //!padre figlio 2
+            c = 15-12;
+            pid1= waitpid(pid1,&stato,0);
+            ris1= WEXITSTATUS(stato);
+            pid2= waitpid(pid2,&stato,0);
+            ris2= WEXITSTATUS(stato);
+            ris3= ris2*c;
+            rist= ris1+ris3;
+            printf("Il risultato è: %d", rist);
+            return 0;
+        }
+        else{
+            //*figlio 2 (11+4)
+            b = 11+4;
+            exit(b);
+        }
+    }
+    else{
+        //*figlio 1 (10-4)
+        a = (10-4)/3;
+        exit(a);
+    } 
+}
