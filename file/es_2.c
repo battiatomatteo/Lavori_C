@@ -13,7 +13,7 @@
 #define SOGLIA 3
 
 int main(){
-  int ok = 0, i, l = 0;
+  int ok = 0, i, l = 0, voc = 0;
   FILE *fp;
   char p[MAXS+1];
 
@@ -28,20 +28,24 @@ int main(){
        if( l<=MAXS ){
          for(i=0 ; i<l ; i++){
             if(p[i] >= 'A' && p[i] <= 'Z' ){ //CONTROLLO SE LA PAROLA E' MAIUSCOLA
-               printf("sono presenti dei caratteri maiuscoli");
+               printf("\nsono presenti dei caratteri maiuscoli");
                ok = 1;
             }
+           if(p[i] == 'a' || p[i] <= 'i' || p[i] == 'e' || p[i] == 'o' || p[i] == 'u'){
+              voc += 1;
+           }
           }
-         if (ok == 0){
+         if (ok == 0 && voc >= 3){
            for(i=l; i>=0; i--) printf("%c", p[i]); //stampa la parola al rovescio
          }
+         printf("\n");
        }
       else {
-        printf("la parola è troppo lunga");
+        printf("\nla parola è troppo lunga");
       }
     }
   }
-  
+
 
   fclose(fp);
 
