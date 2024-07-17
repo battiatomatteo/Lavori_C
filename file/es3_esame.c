@@ -74,7 +74,8 @@ node* inserisciincoda(node* lista, int num){   // inserisco in coda alla lista
 }
 
 node* unione(node *l1, node *l2){   // unione delle due liste 
-    int n1 = 0, n2 = 0;
+    int n1 = 0, n2 = 0, v =100, flag = 0;
+    int lista_dispari [v] ;
     node* l_n = NULL;   // lista
     node* ultimo_nodo_l1 = l1;
     node* ultimo_nodo_l2 = l2;
@@ -87,12 +88,36 @@ node* unione(node *l1, node *l2){   // unione delle due liste
 
     while(ultimo_nodo_l1->next != NULL && ultimo_nodo_l2->next != NULL){   // fino a quando non ho finito entrambe le liste 
         if(ultimo_nodo_l1->num > ultimo_nodo_l2->num){   
-            nuovo_nodo->num = ultimo_nodo_l2->num;   // inserisco il numero nella nuova lista
-            ultimo_nodo_l2 = ultimo_nodo_l2->next;   // passo al nodo sucessivo
+            if( ultimo_nodo_l2->num %2 == 0){  // se il numero è pari nessun problema 
+                nuovo_nodo->num = ultimo_nodo_l2->num;   // inserisco il numero nella nuova lista
+                ultimo_nodo_l2 = ultimo_nodo_l2->next;   // passo al nodo sucessivo
+            }
+            else{ // controllo se il numero dipari è gia presente nella lista 
+                for(int o = 0; o< ln(lista_dispari); o++) {
+                    if( ultimo_nodo_l2->num == lista_dispari[o]) flag = 1;
+                }
+                if(flag = 0){
+                    nuovo_nodo->num = ultimo_nodo_l2->num;   // inserisco il numero nella nuova lista
+                    ultimo_nodo_l2 = ultimo_nodo_l2->next;   // passo al nodo sucessivo
+                }
+                flag = 0;
+            }
         }
         else{
-            nuovo_nodo->num = ultimo_nodo_l1->num;   // inserisco il numero nella nuova lista
-            ultimo_nodo_l1 = ultimo_nodo_l1->next;   // passo al nodo sucessivo
+            if( ultimo_nodo_l1->num %2 == 0){  // se il numero è pari nessun problema 
+                nuovo_nodo->num = ultimo_nodo_l1->num;   // inserisco il numero nella nuova lista
+                ultimo_nodo_l1 = ultimo_nodo_l1->next;   // passo al nodo sucessivo
+            }
+            else{ // controllo se il numero dipari è gia presente nella lista 
+                for(int o = 0; o< ln(lista_dispari); o++) {
+                    if( ultimo_nodo_l1->num == lista_dispari[o]) flag = 1;
+                }
+                if(flag = 0){
+                    nuovo_nodo->num = ultimo_nodo_l1->num;   // inserisco il numero nella nuova lista
+                    ultimo_nodo_l1 = ultimo_nodo_l1->next;   // passo al nodo sucessivo
+                }
+                flag = 0;
+            }
         }
         nuovo_nodo = nuovo_nodo->next;               // passo al nodo sucessivo della nuova lista
     }
