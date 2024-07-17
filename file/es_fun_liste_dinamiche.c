@@ -150,9 +150,9 @@ int max_node_number(Node* par_list) {
 
 
 int main() {
-
-	Node lista;
-	lista = end_insertion();
+	int num = 0;
+	Node* lista;
+	lista = end_insertion(lista , num);
 
 	return 0;
 }
