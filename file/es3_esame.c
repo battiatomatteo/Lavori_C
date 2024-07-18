@@ -79,18 +79,13 @@ node* unione(node *l1, node *l2){   // unione delle due liste
     node* l_n = NULL;   // lista
     node* ultimo_nodo_l1 = l1;
     node* ultimo_nodo_l2 = l2;
-    node* nuovo_nodo  = (node*)calloc(1,sizeof(node));    // alloco memoria per la nuova lista 
+    // node* nuovo_nodo  = (node*)calloc(1,sizeof(node));    // alloco memoria per la nuova lista 
 
-    if(nuovo_nodo == NULL){
-        printf("errore allocazione memoria.");
-        return l_n;
-    }
 
-    while(ultimo_nodo_l1->next != NULL && ultimo_nodo_l2->next != NULL){   // fino a quando non ho finito entrambe le liste 
+    while(ultimo_nodo_l1 != NULL || ultimo_nodo_l2 != NULL){   // fino a quando non ho finito entrambe le liste 
         if(ultimo_nodo_l1->num > ultimo_nodo_l2->num){   
             if( ultimo_nodo_l2->num %2 == 0){  // se il numero è pari nessun problema 
-                nuovo_nodo->num = ultimo_nodo_l2->num;   // inserisco il numero nella nuova lista
-                ultimo_nodo_l2 = ultimo_nodo_l2->next;   // passo al nodo sucessivo
+                l_n = inserisciincoda(l_n, ultimo_nodo_l2->num);
             }
             else{ // controllo se il numero dipari è gia presente nella lista 
                 for(int o = 0; o < v; o++) {
@@ -99,7 +94,7 @@ node* unione(node *l1, node *l2){   // unione delle due liste
                 }
                 if(flag == 0){
                     lista_dispari[n1] = ultimo_nodo_l2->num;   // inser
-                    nuovo_nodo->num = ultimo_nodo_l2->num;   // inserisco il numero nella nuova lista
+                    l_n = inserisciincoda(l_n, ultimo_nodo_l2->num);
                     ultimo_nodo_l2 = ultimo_nodo_l2->next;   // passo al nodo sucessivo
                 }
                 flag = 0;
@@ -108,8 +103,7 @@ node* unione(node *l1, node *l2){   // unione delle due liste
         }
         else{
             if( ultimo_nodo_l1->num %2 == 0){  // se il numero è pari nessun problema 
-                nuovo_nodo->num = ultimo_nodo_l1->num;   // inserisco il numero nella nuova lista
-                ultimo_nodo_l1 = ultimo_nodo_l1->next;   // passo al nodo sucessivo
+                l_n = inserisciincoda(l_n, ultimo_nodo_l1->num);
             }
             else{ // controllo se il numero dipari è gia presente nella lista 
                 for(int o = 0; o < v; o++) {
@@ -118,14 +112,14 @@ node* unione(node *l1, node *l2){   // unione delle due liste
                 }
                 if(flag == 0){
                     lista_dispari[n1] = ultimo_nodo_l2->num;   // inser
-                    nuovo_nodo->num = ultimo_nodo_l1->num;   // inserisco il numero nella nuova lista
+                    l_n = inserisciincoda(l_n, ultimo_nodo_l1->num);
                     ultimo_nodo_l1 = ultimo_nodo_l1->next;   // passo al nodo sucessivo
                 }
                 flag = 0;
                 n1 = 0; 
             }
         }
-        nuovo_nodo = nuovo_nodo->next;               // passo al nodo sucessivo della nuova lista
+        //nuovo_nodo = nuovo_nodo->next;               // passo al nodo sucessivo della nuova lista
     }
 
     return l_n;
