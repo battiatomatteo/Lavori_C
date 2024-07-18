@@ -93,11 +93,11 @@ node* unione(node *l1, node *l2){   // unione delle due liste
                 ultimo_nodo_l2 = ultimo_nodo_l2->next;   // passo al nodo sucessivo
             }
             else{ // controllo se il numero dipari è gia presente nella lista 
-                for(int o = 0; o< ln(lista_dispari); o++) {
+                for(int o = 0; o < v; o++) {
                     if( ultimo_nodo_l2->num == lista_dispari[o]) flag = 1;
                     n1 = o;
                 }
-                if(flag = 0){
+                if(flag == 0){
                     lista_dispari[n1] = ultimo_nodo_l2->num;   // inser
                     nuovo_nodo->num = ultimo_nodo_l2->num;   // inserisco il numero nella nuova lista
                     ultimo_nodo_l2 = ultimo_nodo_l2->next;   // passo al nodo sucessivo
@@ -112,11 +112,11 @@ node* unione(node *l1, node *l2){   // unione delle due liste
                 ultimo_nodo_l1 = ultimo_nodo_l1->next;   // passo al nodo sucessivo
             }
             else{ // controllo se il numero dipari è gia presente nella lista 
-                for(int o = 0; o< ln(lista_dispari); o++) {
+                for(int o = 0; o < v; o++) {
                     if( ultimo_nodo_l1->num == lista_dispari[o]) flag = 1;
                     n1 = o;
                 }
-                if(flag = 0){
+                if(flag == 0){
                     lista_dispari[n1] = ultimo_nodo_l2->num;   // inser
                     nuovo_nodo->num = ultimo_nodo_l1->num;   // inserisco il numero nella nuova lista
                     ultimo_nodo_l1 = ultimo_nodo_l1->next;   // passo al nodo sucessivo
