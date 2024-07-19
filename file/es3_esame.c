@@ -85,14 +85,14 @@ node* unione(node *l1, node *l2){   // unione delle due liste
     while(ultimo_nodo_l1 != NULL || ultimo_nodo_l2 != NULL){   // fino a quando non ho finito entrambe le liste 
         if(ultimo_nodo_l1->num > ultimo_nodo_l2->num){   
             if( ultimo_nodo_l2->num %2 == 0){  // se il numero è pari nessun problema 
-                l_n = inserisciincoda(l_n, ultimo_nodo_l2->num);
+                l_n = inserisciincoda(l_n, ultimo_nodo_l2->num);   // inseriesco in coda 
             }
             else{ // controllo se il numero dipari è gia presente nella lista 
-                for(int o = 0; o < v; o++) {
-                    if( ultimo_nodo_l2->num == lista_dispari[o]) flag = 1;
-                    n1 = o;
+                for(int o = 0; (o < v ) && (flag == 0) ; o++) {
+                    if( ultimo_nodo_l2->num == lista_dispari[o]) flag = 1;   // scorro la lista lista_dispari , se lo trovo allora alzo il flag 
+                    n1 = o;      // esco dal ciclo 
                 }
-                if(flag == 0){
+                if(flag == 0){   // nel caso in cui il numero da inserire non è presente nella lista_dispari proseguo con l'inserimento in coda 
                     lista_dispari[n1] = ultimo_nodo_l2->num;   // inser
                     l_n = inserisciincoda(l_n, ultimo_nodo_l2->num);
                     ultimo_nodo_l2 = ultimo_nodo_l2->next;   // passo al nodo sucessivo
@@ -106,7 +106,7 @@ node* unione(node *l1, node *l2){   // unione delle due liste
                 l_n = inserisciincoda(l_n, ultimo_nodo_l1->num);
             }
             else{ // controllo se il numero dipari è gia presente nella lista 
-                for(int o = 0; o < v; o++) {
+                for(int o = 0; (o < v ) && (flag == 0); o++) {
                     if( ultimo_nodo_l1->num == lista_dispari[o]) flag = 1;
                     n1 = o;
                 }
