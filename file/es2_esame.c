@@ -1,4 +1,4 @@
-/*
+/* 
 Completare il programma che stampa a video coppie di lettere e un numero a partire da stringhe presenti in un file. In particolare, si definisca:
 
 Il sottoprogramma estrai che prende in input una stringa e restituisce al chiamante la distanza, secondo l'ordine alfabetico, in valore assoluto tra
