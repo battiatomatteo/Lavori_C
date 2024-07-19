@@ -76,7 +76,7 @@ node* inserisciincoda(node* lista, int num){   // ! inserisco in coda alla lista
 node* unione(node *l1, node *l2){   //! unione delle due liste 
     int n1 = 0, v =100, flag = 0;
     int lista_dispari [v] ;
-    node* l_n = NULL;   // lista
+    node* l_n = NULL;   
     node* ultimo_nodo_l1 = l1;
     node* ultimo_nodo_l2 = l2;
     // ? node* nuovo_nodo  = (node*)calloc(1,sizeof(node));    // * alloco memoria per la nuova lista 
